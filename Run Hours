@@ -1,0 +1,18 @@
+(*	Run Hours and Number of starts*)
+(* --------------------------------------------------------------------------------- *)
+
+(* BLOCK_2D Count the number of starts *)
+R_TRIG_2D (BLOCK_2D_PUMP_RUNNING);
+
+IF
+	R_TRIG_2D.Q = TRUE THEN 
+	BLOCK_2D_PUMP_NUMBER_STARTS := BLOCK_2D_PUMP_NUMBER_STARTS + 1; 
+END_IF;
+
+
+(* Count the running hours *)
+RTO_2D (BLOCK_2D_PUMP_RUNNING,RTO_2D_RESET,T#1h);
+RTO_2D_RESET := RTO_2D.Q;
+IF RTO_2D.Q = TRUE THEN	
+	BLOCK_2D_PUMP_TIME_RUN := BLOCK_2D_PUMP_TIME_RUN + 1;
+END_IF;
