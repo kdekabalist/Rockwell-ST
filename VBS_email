@@ -1,0 +1,39 @@
+Public Function SendMail()
+On Error Resume Next
+
+    Dim Message As Object
+    Dim Configuration As Object
+    Dim Flds As Variant
+
+    Set Message = CreateObject("CDO.Message")
+    Set Configuration = CreateObject("CDO.Configuration")
+
+    Configuration.Load -1
+    Set Flds = Configuration.Fields
+
+
+    Flds(cdoSMTPUseSSL) = True
+    Flds(cdoSMTPAuthenticate) = 1
+    Flds(cdoSendUserName) = "rocksftv01@outlook.com"
+    Flds(cdoSendPassword) = "XXXXXXXXX"
+    Flds(cdoSMTPServer) = "smtp.office365.com"
+    Flds(cdoSendUsingMethod) = 2
+    Flds(cdoSMTPServerPort) = 25
+    Flds.Update
+
+    Set Message.Configuration = Configuration
+    Message.To = "john@ftec.com.au"
+    Message.From = "rocksftv01@outlook.com"
+    Message.Subject = "Rocks Farming Co Alarm"
+    Message.TextBody = "Alarm Event Triggered" & Now
+    Message.Send
+
+    Set Message = Nothing
+    Set Configuration = Nothing
+If Err.Number = 0 Then
+    SendMail = True
+Else
+    SendMail = False
+    MsgBox "Error Description: " & Err.Description, vbCritical, "Error Number " & Err.Number
+End If
+End Function
