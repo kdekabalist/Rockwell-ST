@@ -14,7 +14,7 @@ On Error Resume Next
 
     Flds(cdoSMTPUseSSL) = True
     Flds(cdoSMTPAuthenticate) = 1
-    Flds(cdoSendUserName) = "rocksftv01@outlook.com"
+    Flds(cdoSendUserName) = "xxxxxxxxxxxxxxxxx"
     Flds(cdoSendPassword) = "XXXXXXXXX"
     Flds(cdoSMTPServer) = "smtp.office365.com"
     Flds(cdoSendUsingMethod) = 2
@@ -22,9 +22,9 @@ On Error Resume Next
     Flds.Update
 
     Set Message.Configuration = Configuration
-    Message.To = "john@ftec.com.au"
-    Message.From = "rocksftv01@outlook.com"
-    Message.Subject = "Rocks Farming Co Alarm"
+    Message.To = "xxxxxxxxxxxxx"
+    Message.From = "xxxxxxxxxxxxx"
+    Message.Subject = "xxxxxxxxxxxxxxxxxxxxx"
     Message.TextBody = "Alarm Event Triggered" & Now
     Message.Send
 
